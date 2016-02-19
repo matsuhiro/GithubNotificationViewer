@@ -2,7 +2,7 @@ package net.matsuhiro.github.notificationviewer.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class NotificationEntity {
+public class Notification {
 
     @SerializedName("updated_at")
     public String lastUpdateAt;

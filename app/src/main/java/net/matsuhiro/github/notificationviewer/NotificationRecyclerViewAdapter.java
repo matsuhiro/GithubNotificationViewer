@@ -11,23 +11,23 @@ import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 
-import net.matsuhiro.github.notificationviewer.entity.NotificationEntity;
+import net.matsuhiro.github.notificationviewer.entity.Notification;
 
 import java.util.List;
 
 public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<NotificationRecyclerViewAdapter.ViewHolder> {
 
-    private List<NotificationEntity> mValues;
+    private List<Notification> mValues;
     private final OnListInteractionListener mListener;
     private boolean mEnabledClick = true;
     private Interpolator mInterpolator = new LinearInterpolator();
 
-    public NotificationRecyclerViewAdapter(List<NotificationEntity> items, OnListInteractionListener listener) {
+    public NotificationRecyclerViewAdapter(List<Notification> items, OnListInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
 
-    public void setItemsAndNotify(List<NotificationEntity> items) {
+    public void setItemsAndNotify(List<Notification> items) {
         mValues = items;
         notifyDataSetChanged();
     }
@@ -47,13 +47,9 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        String title = "Title: " + mValues.get(position).subject.title;
-        String name = "Repository name: " + mValues.get(position).repository.name;
-        String lastUpdateAt = "Last update at: " + mValues.get(position).lastUpdateAt;
-
-        holder.mTitleView.setText(title);
-        holder.mNameView.setText(name);
-        holder.mLastUpdateAtView.setText(lastUpdateAt);
+        holder.mTitleView.setText(mValues.get(position).subject.title);
+        holder.mNameView.setText(mValues.get(position).repository.name);
+        holder.mLastUpdateAtView.setText(mValues.get(position).lastUpdateAt);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +78,7 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
         public final TextView mTitleView;
         public final TextView mNameView;
         public final TextView mLastUpdateAtView;
-        public NotificationEntity mItem;
+        public Notification mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -99,6 +95,6 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
     }
 
     public interface OnListInteractionListener {
-        void onListFragmentInteraction(NotificationEntity item);
+        void onListFragmentInteraction(Notification item);
     }
 }

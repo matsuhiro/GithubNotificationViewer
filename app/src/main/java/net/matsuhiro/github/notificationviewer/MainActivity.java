@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import net.matsuhiro.github.notificationviewer.entity.NotificationEntity;
+import net.matsuhiro.github.notificationviewer.entity.Notification;
 import net.matsuhiro.github.notificationviewer.entity.SubjectDetail;
 
 import java.io.IOException;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(NotificationEntity item) {
+    public void onListFragmentInteraction(Notification item) {
         mAdapter.enableClick(false);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setupNotificationsList() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new NotificationRecyclerViewAdapter(new CopyOnWriteArrayList<NotificationEntity>(), this);
+        mAdapter = new NotificationRecyclerViewAdapter(new CopyOnWriteArrayList<Notification>(), this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity implements
                 String result = response.body().string();
                 Gson gson = new Gson();
                 try {
-                    final CopyOnWriteArrayList<NotificationEntity> notifications =
-                            gson.fromJson(result, new TypeToken<CopyOnWriteArrayList<NotificationEntity>>() {
+                    final CopyOnWriteArrayList<Notification> notifications =
+                            gson.fromJson(result, new TypeToken<CopyOnWriteArrayList<Notification>>() {
                             }.getType());
 
                     runOnUiThread(new Runnable() {
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    private void showDetailInBrowser(NotificationEntity notification) {
+    private void showDetailInBrowser(Notification notification) {
         Request request = new Request.Builder()
                 .url(notification.subject.url)
                 .header("Authorization", "token " + mAccessToken)
