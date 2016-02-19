@@ -24,7 +24,6 @@ import net.matsuhiro.github.notificationviewer.entity.SubjectDetail;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
