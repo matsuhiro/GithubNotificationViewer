@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GithubnNotificationViewer</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="title">title</string>
+    <string name="name">name</string>
+    <string name="last_update">last update</string>
+
+    <string name="main_message">You can refresh list by swiping down.</string>
+</resources>
